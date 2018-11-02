@@ -1,3 +1,5 @@
+import { slurp } from './util'
+
 export default class Controller {
 
 	constructor() {
@@ -19,21 +21,23 @@ export default class Controller {
 		context.globalCompositeOperation = 'multiply';
 
 		const size = 500;
-		const thickenss = 20;
+		const halfThickness = 20;
 		const colors = ['#FF0', '#0FF', '#F0F'];
 		const numDirections = 3;
 		for (let i = 0; i < numDirections; i ++) {
 			const color = colors[i];
-			const numLines = 1;
+			const numLines = 10;
 			for (let l = 0; l < numLines; l ++) {
-				const amt = l / numLines;
+				const amt = l / (numLines - 1);
+
+				const linePos = slurp(-size, size, amt);
 
 				context.beginPath();
 				context.fillStyle = color;
-				context.moveTo(-size, -thickenss / 2);
-				context.lineTo(-size,  thickenss / 2);
-				context.lineTo( size,  thickenss / 2);
-				context.lineTo( size, -thickenss / 2);
+				context.moveTo(-size, linePos - halfThickness);
+				context.lineTo(-size, linePos + halfThickness);
+				context.lineTo( size, linePos + halfThickness);
+				context.lineTo( size, linePos - halfThickness);
 				context.closePath();
 				context.fill();
 			}
