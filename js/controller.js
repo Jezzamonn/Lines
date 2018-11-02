@@ -21,12 +21,12 @@ export default class Controller {
 		context.globalCompositeOperation = 'multiply';
 
 		const size = 500;
-		const halfThickness = 20;
+		const numLines = 10;
+		const halfThickness = size / (numLines - 1) / 3;
 		const colors = ['#FF0', '#0FF', '#F0F'];
 		const numDirections = 3;
 		for (let i = 0; i < numDirections; i ++) {
 			const color = colors[i];
-			const numLines = 10;
 			for (let l = 0; l < numLines; l ++) {
 				const amt = l / (numLines - 1);
 
