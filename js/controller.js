@@ -26,8 +26,8 @@ export default class Controller {
 		const size = 500;
 		const numLines = 10;
 		const lineGap = size / (numLines - 1);
-		const halfThickness = lineGap / 3;
-		const colors = ['#FF0', '#0FF', '#F0F'];
+		const halfThickness = 0.5 * lineGap / 3;
+		const colors = ['black', 'black', 'black'];
 		const numDirections = 3;
 		for (let i = 0; i < numDirections; i ++) {
 			let localAnimAmt = (this.animAmt + (i / numDirections)) % 1;
