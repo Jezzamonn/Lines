@@ -1,10 +1,10 @@
-import { slurp } from './util'
+import { slurp, easeInOut } from './util'
 
 export default class Controller {
 
 	constructor() {
 		this.animAmt = 0;
-		this.period = 20;
+		this.period = 5;
 	}
 
 	/**
@@ -20,9 +20,8 @@ export default class Controller {
 	 */
 	render(context) {
 		context.globalCompositeOperation = 'multiply';
-		context.rotate(2 * Math.PI * this.animAmt);
 
-		const moveAnimAmt = (4 * this.animAmt) % 1;
+		const moveAnimAmt = this.animAmt;
 
 		const size = 500;
 		const numLines = 10;
@@ -31,11 +30,13 @@ export default class Controller {
 		const colors = ['#FF0', '#0FF', '#F0F'];
 		const numDirections = 3;
 		for (let i = 0; i < numDirections; i ++) {
+			let localAnimAmt = (this.animAmt + (i / numDirections)) % 1;
+			localAnimAmt = easeInOut(localAnimAmt, 7);
 			const color = colors[i];
 			for (let l = 0; l < numLines; l ++) {
 				const amt = l / (numLines - 1);
 
-				const linePos = slurp(-size, size, amt) + 2 * lineGap * moveAnimAmt;
+				const linePos = slurp(-size, size, amt) + 2 * lineGap * localAnimAmt;
 
 				context.beginPath();
 				context.fillStyle = color;
