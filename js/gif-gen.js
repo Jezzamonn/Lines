@@ -9,6 +9,7 @@ import format from 'string-format';
 import filesize from 'filesize';
 
 function renderFrame(context, controller, width, height) {
+    context.globalCompositeOperation = 'source-over';
     context.resetTransform();
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);

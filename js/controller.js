@@ -12,6 +12,7 @@ export default class Controller {
 	 */
 	update(dt) {
 		this.animAmt += dt / this.period;
+		this.animAmt %= 1;
 	}
 
 	/**
@@ -22,7 +23,8 @@ export default class Controller {
 
 		const size = 500;
 		const numLines = 10;
-		const halfThickness = size / (numLines - 1) / 3;
+		const lineGap = size / (numLines - 1);
+		const halfThickness = lineGap / 3;
 		const colors = ['#FF0', '#0FF', '#F0F'];
 		const numDirections = 3;
 		for (let i = 0; i < numDirections; i ++) {
@@ -30,7 +32,7 @@ export default class Controller {
 			for (let l = 0; l < numLines; l ++) {
 				const amt = l / (numLines - 1);
 
-				const linePos = slurp(-size, size, amt);
+				const linePos = slurp(-size, size, amt) + 2 * lineGap * this.animAmt;
 
 				context.beginPath();
 				context.fillStyle = color;
