@@ -4,7 +4,7 @@ export default class Controller {
 
 	constructor() {
 		this.animAmt = 0;
-		this.period = 5;
+		this.period = 20;
 	}
 
 	/**
@@ -20,6 +20,9 @@ export default class Controller {
 	 */
 	render(context) {
 		context.globalCompositeOperation = 'multiply';
+		context.rotate(2 * Math.PI * this.animAmt);
+
+		const moveAnimAmt = (4 * this.animAmt) % 1;
 
 		const size = 500;
 		const numLines = 10;
@@ -32,7 +35,7 @@ export default class Controller {
 			for (let l = 0; l < numLines; l ++) {
 				const amt = l / (numLines - 1);
 
-				const linePos = slurp(-size, size, amt) + 2 * lineGap * this.animAmt;
+				const linePos = slurp(-size, size, amt) + 2 * lineGap * moveAnimAmt;
 
 				context.beginPath();
 				context.fillStyle = color;
