@@ -24,7 +24,7 @@ export default class Controller {
 		const moveAnimAmt = this.animAmt;
 
 		const size = 500;
-		const numLines = 10;
+		const numLines = 9;
 		const lineGap = size / (numLines - 1);
 		const halfThickness = 0.5 * lineGap / 3;
 		const colors = ['black', 'black', 'black'];
