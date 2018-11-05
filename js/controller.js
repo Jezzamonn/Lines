@@ -18,7 +18,7 @@ export default class Controller {
 	/**
 	 * @param {CanvasRenderingContext2D} context 
 	 */
-	render(context, width, height) {
+	render(context, width = 500, height = 500) {
 		const size = (width + height) / 2;
 		const lineGap = 100;
 
